@@ -13,6 +13,18 @@ const data = [
       "Sorting algorithms are a set of instructions that take an array or list of elements and arrange them in a particular order.",
   },
   {
+    title: "Linked List",
+    link: "/linked-list",
+    description:
+      "A linked list is a linear data structure consisting of a sequence of elements where each element points to the next element in the sequence.",
+  },
+  {
+    title: "Stack",
+    link: "/stack",
+    description:
+      "A stack is a linear data structure that follows the Last In, First Out (LIFO) principle, where elements are inserted and removed from the same end called the top.",
+  },
+  {
     title: "Graph",
     link: "/graph",
     description:

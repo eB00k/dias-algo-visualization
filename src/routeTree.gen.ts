@@ -20,7 +20,11 @@ const ChallengesLazyImport = createFileRoute('/challenges')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 const VisulizationIndexLazyImport = createFileRoute('/visulization/')()
+const VisulizationStackLazyImport = createFileRoute('/visulization/stack')()
 const VisulizationSortingLazyImport = createFileRoute('/visulization/sorting')()
+const VisulizationLinkedListLazyImport = createFileRoute(
+  '/visulization/linked-list',
+)()
 
 // Create/Update Routes
 
@@ -46,11 +50,27 @@ const VisulizationIndexLazyRoute = VisulizationIndexLazyImport.update({
   import('./routes/visulization/index.lazy').then((d) => d.Route),
 )
 
+const VisulizationStackLazyRoute = VisulizationStackLazyImport.update({
+  path: '/visulization/stack',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/visulization/stack.lazy').then((d) => d.Route),
+)
+
 const VisulizationSortingLazyRoute = VisulizationSortingLazyImport.update({
   path: '/visulization/sorting',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
   import('./routes/visulization/sorting.lazy').then((d) => d.Route),
+)
+
+const VisulizationLinkedListLazyRoute = VisulizationLinkedListLazyImport.update(
+  {
+    path: '/visulization/linked-list',
+    getParentRoute: () => rootRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/visulization/linked-list.lazy').then((d) => d.Route),
 )
 
 // Populate the FileRoutesByPath interface
@@ -69,8 +89,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChallengesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/visulization/linked-list': {
+      preLoaderRoute: typeof VisulizationLinkedListLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/visulization/sorting': {
       preLoaderRoute: typeof VisulizationSortingLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/visulization/stack': {
+      preLoaderRoute: typeof VisulizationStackLazyImport
       parentRoute: typeof rootRoute
     }
     '/visulization/': {
@@ -86,7 +114,9 @@ export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AboutLazyRoute,
   ChallengesLazyRoute,
+  VisulizationLinkedListLazyRoute,
   VisulizationSortingLazyRoute,
+  VisulizationStackLazyRoute,
   VisulizationIndexLazyRoute,
 ])
 

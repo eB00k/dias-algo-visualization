@@ -21,6 +21,8 @@
 
 @layer base {
   :root {
+    --bluish: #2563eb;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -53,6 +55,7 @@
   }
 
   .dark {
+    --bluish: #2563eb;
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 

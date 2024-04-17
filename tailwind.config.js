@@ -21,9 +21,10 @@ module.exports = {
         red: "0px 48px 100px 0px red",
         blue: "rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px",
         key: "rgba(17, 17, 26, 0.1) 0px 0px 16px",
-        "dark-key": "blue 0px 0px 16px"
+        "dark-key": "var(--bluish) 0px 0px 16px",
       },
       colors: {
+        bluish: "var(--bluish)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

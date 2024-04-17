@@ -14,7 +14,7 @@ function CardBox({ title, description }) {
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
         <CardContent className="p-0">
-          <Button size="sm" variant="link" className="text-blue-600">
+          <Button size="sm" variant="link" className="text-bluish">
             View
           </Button>
         </CardContent>
