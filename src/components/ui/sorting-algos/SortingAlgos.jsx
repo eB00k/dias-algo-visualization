@@ -1,9 +1,17 @@
-import React from 'react'
+import { delay } from "@/lib/utils";
 
-function SortingAlgos() {
-  return (
-    <div>SortingAlgos</div>
-  )
-}
+export const BubbleSort = async (array, delayTime = 100) => {
+  const newArray = [...array];
+  const n = newArray.length;
 
-export default SortingAlgos
+  for (let i = 0; i < n - 1; i++) {
+    for (let j = 0; j < n - i - 1; j++) {
+      if (newArray[j] > newArray[j + 1]) {
+        [newArray[j], newArray[j + 1]] = [newArray[j + 1], newArray[j]];
+        await delay(delayTime);
+      }
+    }
+  }
+
+  return newArray;
+};

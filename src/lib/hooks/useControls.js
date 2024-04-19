@@ -1,9 +1,16 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 export const useControls = () => {
   const [barNumber, setBarNumber] = useState(25);
+  const [speed, setSpeed] = useState(50);
+
+  const handleChangeSpeed = (e) => {
+    setSpeed(e[0]);
+  };
 
   return {
+    speed,
+    handleChangeSpeed,
     barNumber,
     setBarNumber,
   };
