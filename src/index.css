@@ -13,6 +13,10 @@
   font-family: "Noto Sans", sans-serif;
 }
 
+:root {
+  --stack-container-width: min(160px, 80%);
+}
+
 @layer components {
   .page {
     @apply pt-14 min-h-screen;
@@ -22,7 +26,6 @@
 @layer base {
   :root {
     --bluish: #2563eb;
-
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 

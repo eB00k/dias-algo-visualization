@@ -5,6 +5,7 @@ import { Slider } from "@/components/ui/slider";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { delay } from "@/lib/utils";
+import { sortingAlgorithms } from "@/lib/store/config";
 
 export const Route = createLazyFileRoute("/visulization/sorting")({
   component: Sorting,
@@ -308,10 +309,11 @@ function Sorting() {
     <div className="page">
       <h1>Sorting Algorithms</h1>
 
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 p-2">
         <SelectOption
-          algorithm={algorithm}
-          setAlgorithm={setAlgorithm}
+          setValue={setAlgorithm}
+          options={sortingAlgorithms}
+          defaultValue={"BubbleSort"}
           resetSorting={() => console.log("resetting sorting")}
         />
         <Slider
@@ -338,7 +340,7 @@ function Sorting() {
       </div>
 
       <div className="pt-4 w-full">
-        <div className="w-full bg-secondary h-[500px] flex items-end space-x-1">
+        <div className="w-full bg-secondary h-[460px] flex items-end space-x-1">
           {sortingArray.map((item, index) => {
             const isInBucket = bucketStates.some((bucket) =>
               bucket.includes(item)
@@ -346,10 +348,10 @@ function Sorting() {
             const isComparing = comparingIndices.includes(index);
             const isSwapping = swappingIndices.includes(index);
             const isMoving = movingIndex === index;
-            let barColor = "#3498db";
+            let barColor = "var(--bluish)";
 
             if (isComparing) {
-              barColor = "#e74c3c";
+              barColor = "red";
             } else if (isSwapping) {
               barColor = "#f39c12";
             } else if (isMoving) {

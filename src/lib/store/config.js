@@ -13,3 +13,8 @@ export const sortingAlgorithms = [
   { title: "Quick", name: "QuickSort" },
   { title: "Radix", name: "RadixSort" },
 ];
+
+export const stackOptions = [
+  { title: "Stack", name: "Stack" },
+  { title: "Queue", name: "Queue" },
+];

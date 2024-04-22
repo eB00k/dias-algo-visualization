@@ -8,43 +8,43 @@ export const Route = createLazyFileRoute("/visulization/")({
 const data = [
   {
     title: "Sorting",
-    link: "/visulization/sorting",
+    link: "sorting",
     description:
       "Sorting algorithms are a set of instructions that take an array or list of elements and arrange them in a particular order.",
   },
   {
     title: "Linked List",
-    link: "/linked-list",
+    link: "linked-list",
     description:
       "A linked list is a linear data structure consisting of a sequence of elements where each element points to the next element in the sequence.",
   },
   {
     title: "Stack",
-    link: "/stack",
+    link: "stack",
     description:
       "A stack is a linear data structure that follows the Last In, First Out (LIFO) principle, where elements are inserted and removed from the same end called the top.",
   },
   {
     title: "Graph",
-    link: "/graph",
+    link: "graph",
     description:
       "Graphs are a collection of nodes (vertices) and edges that connect pairs of nodes.",
   },
   {
     title: "Tree",
-    link: "/tree",
+    link: "tree",
     description:
       "A tree is a hierarchical data structure consisting of nodes connected by edges.",
   },
   {
     title: "Searching",
-    link: "/searching",
+    link: "searching",
     description:
       "Searching algorithms are used to find an item with specified properties among a collection of items.",
   },
   {
     title: "Dynamic Programming",
-    link: "/dynamic-programming",
+    link: "dynamic-programming",
     description:
       "Dynamic Programming is a method for solving complex problems by breaking them down into simpler subproblems.",
   },

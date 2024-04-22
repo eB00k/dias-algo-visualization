@@ -6,23 +6,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../select";
-import { sortingAlgorithms } from "@/lib/store/config";
 
-function SelectOption({ algorithm, setAlgorithm, resetSorting }) {
+function SelectOption({ setValue, defaultValue, options = [] }) {
   const handleSelectOnChange = useCallback((value) => {
-    setAlgorithm(value);
-    resetSorting();
+    setValue(value);
+    // resetSorting();
   }, []);
 
   return (
-    <Select onValueChange={handleSelectOnChange} defaultValue={"BubbleSort"}>
+    <Select onValueChange={handleSelectOnChange} defaultValue={defaultValue}>
       <SelectTrigger className="w-[200px] bg-secondary">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        {sortingAlgorithms.map((algorithm) => (
-          <SelectItem key={algorithm.name} value={algorithm.name}>
-            {algorithm.title}
+        {options.map((item) => (
+          <SelectItem key={item.name} value={item.name}>
+            {item.title}
           </SelectItem>
         ))}
       </SelectContent>
