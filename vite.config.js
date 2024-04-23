@@ -6,6 +6,7 @@ import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), TanStackRouterVite()],
+  base: "/dias-algo-visualization",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
