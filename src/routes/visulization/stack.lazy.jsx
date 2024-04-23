@@ -77,7 +77,9 @@ function Stack() {
     const action =
       selected === "Stack" ? `${topItem} popped` : `${topItem} dequeued`;
     addToHistory(action);
-    setArr((prev) => prev.slice(0, -1));
+    setArr((prev) => {
+      return selected === "Stack" ? prev.slice(0, -1) : prev.slice(1);
+    });
   };
 
   const handleTop = () => {
