@@ -25,6 +25,20 @@ function LinkedList() {
   const numberOfUsedBoxes = generateRandomBetween(3, 9);
   const initialUsedBoxes = generateUniqueNumbers(1, 30, numberOfUsedBoxes);
 
+  const getUnusedPosition = () => {
+    const unusedPositions = boxes
+      .flat()
+      .filter((position) => !usedBoxes.includes(position));
+    if (unusedPositions.length === 0) {
+      return null;
+    }
+    return unusedPositions[Math.floor(Math.random() * unusedPositions.length)];
+  };
+
+  useEffect(() => {
+    setUsedBoxes(initialUsedBoxes);
+  }, []);
+
   const addNode = (value) => {
     if (!value || isNaN(value)) {
       alert("Please enter a valid number.");
@@ -55,19 +69,35 @@ function LinkedList() {
     setUsedBoxes((prevUsedBoxes) => [...prevUsedBoxes, newNode.position]);
   };
 
-  const getUnusedPosition = () => {
-    const unusedPositions = boxes
-      .flat()
-      .filter((position) => !usedBoxes.includes(position));
-    if (unusedPositions.length === 0) {
-      return null;
-    }
-    return unusedPositions[Math.floor(Math.random() * unusedPositions.length)];
+  const deleteNodeByValue = (valueToDelete) => {
+    setNodes((prevNodes) => {
+      let prevNode = null;
+      const updatedNodes = prevNodes.filter((node) => {
+        if (node.value === valueToDelete) {
+          if (prevNode) {
+            // Update the next pointer of the previous node
+            prevNode.next = node.next;
+          }
+          return false; // Remove the node from the list
+        }
+        prevNode = node;
+        return true; // Keep the node in the list
+      });
+      return updatedNodes;
+    });
+
+    setUsedBoxes((prevUsedBoxes) =>
+      prevUsedBoxes.filter((position) => {
+        const node = nodes.find((node) => node.position === position);
+        return node ? node.value !== valueToDelete : true;
+      })
+    );
   };
 
-  useEffect(() => {
-    setUsedBoxes(initialUsedBoxes);
-  }, []);
+  const clearLinkedList = () => {
+    setNodes([]);
+    setUsedBoxes([]);
+  };
 
   function handleAdd() {
     const val = inputRef.current.value.trim();
@@ -76,6 +106,45 @@ function LinkedList() {
     addNode(val);
     inputRef.current.value = "";
   }
+
+  const renderArrow = (fromPosition, toPosition) => {
+    const fromRow = Math.floor((fromPosition - 1) / 6);
+    const fromCol = (fromPosition - 1) % 6;
+    const toRow = Math.floor((toPosition - 1) / 6);
+    const toCol = (toPosition - 1) % 6;
+
+    const gridWidth = 528;
+    const gridHeight = 440;
+    const cellWidth = gridWidth / 6;
+    const cellHeight = gridHeight / 5;
+
+    const fromX = (fromCol + 0.5) * cellWidth;
+    const fromY = (fromRow + 0.5) * cellHeight;
+    const toX = (toCol + 0.5) * cellWidth;
+    const toY = (toRow + 0.5) * cellHeight;
+
+    const angleRadians = Math.atan2(toY - fromY, toX - fromX);
+    const angle = (angleRadians * 180) / Math.PI;
+
+    const length = Math.sqrt(
+      Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2)
+    );
+
+    console.log(angle);
+    const arrowStyle = {
+      width: `${length}px`,
+      transformOrigin: "0 0px",
+      transform: `rotate(${angle}deg)`,
+    };
+
+    return (
+      <div
+        key={`${fromX}-${fromY}`}
+        className="absolute h-[5px] bg-gray-700 dark:bg-gray-300 z-20 rounded-full"
+        style={{ ...arrowStyle, left: "44px", top: "44px" }}
+      ></div>
+    );
+  };
 
   const renderBox = (item) => {
     const node = nodes.find((node) => node.position === item);
@@ -96,7 +165,7 @@ function LinkedList() {
         {node ? (
           <>
             <div>v: {node.value}</div>
-            <div className="absolute z-10 -right-2 -top-2 w-8 h-8 bg-secondary-foreground flex justify-center items-center rounded-full">
+            <div className="absolute z-10 -right-2 -top-2 w-8 h-8 bg-secondary-foreground text-primary-foreground flex justify-center items-center rounded-full">
               {node.position}
             </div>
             <div>next: {node.next || "null"}</div>
@@ -104,6 +173,7 @@ function LinkedList() {
         ) : (
           <div>Place: {item}</div>
         )}
+        {node && node.next && renderArrow(node.position, node.next)}
       </div>
     );
   };
@@ -112,11 +182,17 @@ function LinkedList() {
     <div className="page">
       <h1>Linked List</h1>
       <div className="flex justify-evenly flex-col md:flex-row">
-        <div className="p-2 flex space-x-4 justify-center">
-          <Input ref={inputRef} type={"text"} className="max-w-[300px]" />
+        <div className="p-2 flex gap-4 justify-center  flex-col ">
+          <Input ref={inputRef} type={"text"} className="md:max-w-[300px]" />
           <Button onClick={handleAdd}>+Add</Button>
+          <Button
+            onClick={() => deleteNodeByValue(parseInt(inputRef.current.value))}
+          >
+            Delete Node
+          </Button>
+          <Button onClick={clearLinkedList}>Clear List</Button>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center min-w-[600px]">
           <div className="w-[528px]  h-[440px] grid grid-cols-6 grid-rows-5">
             {boxes.map((row, rowIndex) => row.map((item) => renderBox(item)))}
           </div>
