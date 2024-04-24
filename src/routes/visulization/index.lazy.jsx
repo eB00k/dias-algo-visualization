@@ -5,46 +5,62 @@ export const Route = createLazyFileRoute("/visulization/")({
   component: Index,
 });
 
+// progress, done, undone
+
 const data = [
   {
     title: "Sorting",
     link: "sorting",
+    status: "done",
     description:
       "Sorting algorithms are a set of instructions that take an array or list of elements and arrange them in a particular order.",
   },
   {
     title: "Linked List",
     link: "linked-list",
+    status: "done",
     description:
       "A linked list is a linear data structure consisting of a sequence of elements where each element points to the next element in the sequence.",
   },
   {
     title: "Stack",
     link: "stack",
+    status: "done",
     description:
       "A stack is a linear data structure that follows the Last In, First Out (LIFO) principle, where elements are inserted and removed from the same end called the top.",
   },
   {
+    title: "Postfix, Prefix, and Infix Notations",
+    link: "postfix-prefix-infix",
+    status: "progress",
+    description:
+      "Different ways of representing mathematical expressions, essential for expression evaluation and parsing in computer science.",
+  },
+  {
     title: "Graph",
     link: "graph",
+    status: "undone",
     description:
       "Graphs are a collection of nodes (vertices) and edges that connect pairs of nodes.",
   },
   {
     title: "Tree",
     link: "tree",
+    status: "undone",
     description:
       "A tree is a hierarchical data structure consisting of nodes connected by edges.",
   },
   {
     title: "Searching",
     link: "searching",
+    status: "undone",
     description:
       "Searching algorithms are used to find an item with specified properties among a collection of items.",
   },
   {
     title: "Dynamic Programming",
     link: "dynamic-programming",
+    status: "undone",
     description:
       "Dynamic Programming is a method for solving complex problems by breaking them down into simpler subproblems.",
   },
