@@ -22,6 +22,9 @@ const IndexLazyImport = createFileRoute('/')()
 const VisulizationIndexLazyImport = createFileRoute('/visulization/')()
 const VisulizationStackLazyImport = createFileRoute('/visulization/stack')()
 const VisulizationSortingLazyImport = createFileRoute('/visulization/sorting')()
+const VisulizationPostfixPrefixInfixLazyImport = createFileRoute(
+  '/visulization/postfix-prefix-infix',
+)()
 const VisulizationLinkedListLazyImport = createFileRoute(
   '/visulization/linked-list',
 )()
@@ -64,6 +67,16 @@ const VisulizationSortingLazyRoute = VisulizationSortingLazyImport.update({
   import('./routes/visulization/sorting.lazy').then((d) => d.Route),
 )
 
+const VisulizationPostfixPrefixInfixLazyRoute =
+  VisulizationPostfixPrefixInfixLazyImport.update({
+    path: '/visulization/postfix-prefix-infix',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./routes/visulization/postfix-prefix-infix.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+
 const VisulizationLinkedListLazyRoute = VisulizationLinkedListLazyImport.update(
   {
     path: '/visulization/linked-list',
@@ -93,6 +106,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisulizationLinkedListLazyImport
       parentRoute: typeof rootRoute
     }
+    '/visulization/postfix-prefix-infix': {
+      preLoaderRoute: typeof VisulizationPostfixPrefixInfixLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/visulization/sorting': {
       preLoaderRoute: typeof VisulizationSortingLazyImport
       parentRoute: typeof rootRoute
@@ -115,6 +132,7 @@ export const routeTree = rootRoute.addChildren([
   AboutLazyRoute,
   ChallengesLazyRoute,
   VisulizationLinkedListLazyRoute,
+  VisulizationPostfixPrefixInfixLazyRoute,
   VisulizationSortingLazyRoute,
   VisulizationStackLazyRoute,
   VisulizationIndexLazyRoute,
