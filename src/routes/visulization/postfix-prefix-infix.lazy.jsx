@@ -24,6 +24,11 @@ function InfixToPrefixPostfixConverter() {
     "-": 1,
   };
 
+  const isOperand = (char) => {
+    // Check if character is an operand (alphabetical character or digit)
+    return /^[a-zA-Z0-9]$/.test(char);
+  };
+
   const handleInputChange = (event) => {
     setInfixExpression(event.target.value);
     setError(""); // Clear error message when input changes
@@ -41,6 +46,10 @@ function InfixToPrefixPostfixConverter() {
         setOutput(convertToPrefix(infixExpression));
       } else if (conversionType === "postfix") {
         setOutput(convertToPostfix(infixExpression));
+      } else if (conversionType === "postfix-to-infix") {
+        setOutput(convertPostfixToInfix(infixExpression));
+      } else if (conversionType === "prefix-to-infix") {
+        setOutput(convertPrefixToInfix(infixExpression));
       }
     }
   };
@@ -131,6 +140,48 @@ function InfixToPrefixPostfixConverter() {
     return postfix.join("");
   };
 
+  const convertPostfixToInfix = (postfixExp) => {
+    const stack = [];
+
+    for (let i = 0; i < postfixExp.length; i++) {
+      const char = postfixExp[i];
+
+      // If operand, push to stack
+      if (isOperand(char)) {
+        stack.push(char);
+      } else {
+        // If operator, pop two operands from stack, form an infix expression, and push back to stack
+        const operand2 = stack.pop();
+        const operand1 = stack.pop();
+        stack.push(`(${operand1}${char}${operand2})`);
+      }
+    }
+
+    // The final infix expression will be at the top of the stack
+    return stack.pop();
+  };
+
+  const convertPrefixToInfix = (prefixExp) => {
+    const stack = [];
+
+    for (let i = prefixExp.length - 1; i >= 0; i--) {
+      const char = prefixExp[i];
+
+      // If operand, push to stack
+      if (isOperand(char)) {
+        stack.push(char);
+      } else {
+        // If operator, pop two operands from stack, form an infix expression, and push back to stack
+        const operand1 = stack.pop();
+        const operand2 = stack.pop();
+        stack.push(`(${operand1}${char}${operand2})`);
+      }
+    }
+
+    // The final infix expression will be at the top of the stack
+    return stack.pop();
+  };
+
   const handleClear = () => {
     setInfixExpression("");
     setOutput("");
@@ -145,12 +196,12 @@ function InfixToPrefixPostfixConverter() {
     <div className="page">
       <div>
         <h1 className="p-2 text-slate-500 font-bold">
-          Infix to Postfix/Prefix
+          Infix to Postfix/Prefix & Postfix/Prefix to Infix
         </h1>
         <div className="flex flex-col justify-center py-8 w-full md:max-w-[500px]">
           <div className="flex gap-4 flex-col">
             <label htmlFor="convert-from" className="text-secondary-foreground">
-              Infix expression:
+              Input Expression:
             </label>
             <Input
               id="convert-from"

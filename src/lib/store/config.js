@@ -22,4 +22,6 @@ export const stackOptions = [
 export const expressionConverterOptions = [
   { title: "Prefix", name: "prefix" },
   { title: "Postfix", name: "postfix" },
+  { title: "Postfix to Infix", name: "postfix-to-infix" },
+  { title: "Prefix to Infix", name: "prefix-to-infix" },
 ];
