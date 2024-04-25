@@ -94,7 +94,7 @@ function Stack() {
   return (
     <div className="page">
       <div className="w-full">
-        <h1>Stack & Queue </h1>
+        <h1 className="p-1 text-slate-500 font-bold">Stack & Queue </h1>
         <div className="flex flex-col h-[500px] gap-2">
           <div className="flex w-full justify-between flex-col gap-2 p-2 md:flex-row">
             <SelectOption

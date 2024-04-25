@@ -307,8 +307,7 @@ function Sorting() {
 
   return (
     <div className="page">
-      <h1>Sorting Algorithms</h1>
-
+      <h1 className="p-1 text-slate-500 font-bold">Sorting Algorithms</h1>
       <div className="flex space-x-4 p-2">
         <SelectOption
           setValue={setAlgorithm}

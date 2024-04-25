@@ -1,3 +1,8 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Copy } from "lucide-react";
+import SelectOption from "@/components/ui/select/SelectOption";
+import { expressionConverterOptions } from "@/lib/store/config";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
@@ -138,30 +143,63 @@ function InfixToPrefixPostfixConverter() {
 
   return (
     <div className="page">
-      <input
-        type="text"
-        value={infixExpression}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      />
-      <button onClick={handleConvert}>Convert</button>
-      <button onClick={handleClear}>Clear</button>
-      <button onClick={handleCopyOutput} disabled={!output}>
-        Copy Output
-      </button>
-      <div>{error && <div className="error">{error}</div>}</div>
       <div>
-        <select
-          value={conversionType}
-          onChange={(e) => setConversionType(e.target.value)}
-        >
-          <option value="prefix">Prefix</option>
-          <option value="postfix">Postfix</option>
-        </select>
-      </div>
-      <div>
-        <h3>Output:</h3>
-        <div>{output}</div>
+        <h1 className="p-2 text-slate-500 font-bold">
+          Infix to Postfix/Prefix
+        </h1>
+        <div className="flex flex-col justify-center py-8 w-full md:max-w-[500px]">
+          <div className="flex gap-4 flex-col">
+            <label htmlFor="convert-from" className="text-secondary-foreground">
+              Infix expression:
+            </label>
+            <Input
+              id="convert-from"
+              type="text"
+              value={infixExpression}
+              onChange={handleInputChange}
+              onKeyDown={handleKeyDown}
+              className="w-full bg-secondary"
+            />
+            <div className="flex gap-4 items-center">
+              <span>to</span>
+              <SelectOption
+                options={expressionConverterOptions}
+                defaultValue={conversionType}
+                setValue={setConversionType}
+                className="w-full"
+              ></SelectOption>
+            </div>
+            <label htmlFor="convert-to" className="text-secondary-foreground">
+              Result:
+            </label>
+            <div className="flex gap-2">
+              <Input
+                id="convert-to"
+                type="text"
+                value={output}
+                className="w-full bg-secondary"
+              />
+              <Button
+                variant={"destructive"}
+                onClick={handleCopyOutput}
+                disabled={!output}
+              >
+                <Copy />
+              </Button>
+            </div>
+            <div>
+              {error && <div className="text-red-500 p-4">{error}</div>}
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <Button className="w-full " onClick={handleConvert}>
+              Convert
+            </Button>
+            <Button className="w-full" onClick={handleClear}>
+              Clear
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );

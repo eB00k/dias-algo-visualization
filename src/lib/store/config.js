@@ -18,3 +18,8 @@ export const stackOptions = [
   { title: "Stack", name: "Stack" },
   { title: "Queue", name: "Queue" },
 ];
+
+export const expressionConverterOptions = [
+  { title: "Prefix", name: "prefix" },
+  { title: "Postfix", name: "postfix" },
+];
