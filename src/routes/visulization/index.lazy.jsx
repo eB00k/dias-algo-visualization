@@ -16,6 +16,13 @@ const data = [
       "Sorting algorithms are a set of instructions that take an array or list of elements and arrange them in a particular order.",
   },
   {
+    title: "Searching",
+    link: "searching",
+    status: "progress",
+    description:
+      "Searching algorithms are used to find an item with specified properties among a collection of items.",
+  },
+  {
     title: "Linked List",
     link: "linked-list",
     status: "done",
@@ -32,14 +39,14 @@ const data = [
   {
     title: "Postfix, Prefix, and Infix Notations",
     link: "postfix-prefix-infix",
-    status: "progress",
+    status: "done",
     description:
       "Different ways of representing mathematical expressions, essential for expression evaluation and parsing in computer science.",
   },
   {
     title: "Graph",
     link: "graph",
-    status: "undone",
+    status: "progress",
     description:
       "Graphs are a collection of nodes (vertices) and edges that connect pairs of nodes.",
   },
@@ -49,13 +56,6 @@ const data = [
     status: "undone",
     description:
       "A tree is a hierarchical data structure consisting of nodes connected by edges.",
-  },
-  {
-    title: "Searching",
-    link: "searching",
-    status: "undone",
-    description:
-      "Searching algorithms are used to find an item with specified properties among a collection of items.",
   },
   {
     title: "Dynamic Programming",
