@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { delay } from "@/lib/utils";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 export const Route = createLazyFileRoute("/visulization/searching")({
   component: SearchingAlgos,
@@ -15,8 +16,8 @@ function SearchingAlgos() {
   const [binarySearchIndex, setBinarySearchIndex] = useState(-1);
   const [searchResultLinear, setSearchResultLinear] = useState(-1);
   const [searchResultBinary, setSearchResultBinary] = useState(-1);
-  const [resetLinear, setResetLinear] = useState(true);
-  const [resetBinary, setResetBinary] = useState(true);
+  // const [resetLinear, setResetLinear] = useState(true);
+  // const [resetBinary, setResetBinary] = useState(true);
   const [searchTarget, setSearchTarget] = useState("");
 
   useEffect(() => {
@@ -33,7 +34,7 @@ function SearchingAlgos() {
   }, []);
 
   const linearSearch = async (target) => {
-    setResetLinear(false);
+    // setResetLinear(false);
     for (let i = 0; i < initialArray.length; i++) {
       setLinearSearchIndex(i);
       await delay(500);
@@ -42,11 +43,11 @@ function SearchingAlgos() {
         break;
       }
     }
-    setResetLinear(true);
+    // setResetLinear(true);
   };
 
   const binarySearch = async (target) => {
-    setResetBinary(false);
+    // setResetBinary(false);
     let left = 0;
     let right = sortedArray.length - 1;
     while (left <= right) {
@@ -62,7 +63,7 @@ function SearchingAlgos() {
         right = mid - 1;
       }
     }
-    setResetBinary(true);
+    // setResetBinary(true);
   };
 
   const handleSearchBoth = () => {
@@ -100,7 +101,6 @@ function SearchingAlgos() {
               searchIndex={linearSearchIndex}
               searchResult={searchResultLinear}
               setSearchResult={setSearchResultLinear}
-              reset={resetLinear} // Pass reset state variable
             />
             <SearchAlgoComponent
               arr={sortedArray}
@@ -110,7 +110,6 @@ function SearchingAlgos() {
               searchIndex={binarySearchIndex}
               searchResult={searchResultBinary}
               setSearchResult={setSearchResultBinary}
-              reset={resetBinary} // Pass reset state variable
             />
           </div>
         </div>
@@ -127,7 +126,6 @@ function SearchAlgoComponent({
   searchIndex,
   searchResult,
   setSearchResult,
-  reset,
 }) {
   const handleSearch = (target) => {
     setSearchResult(-1);
@@ -144,16 +142,22 @@ function SearchAlgoComponent({
         {label}
       </Button>
       <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 place-items-center ">
-        {arr.map((item, index) => (
-          <div
-            key={index}
-            className={`min-w-16 min-h-16 bg-border flex justify-center items-center rounded-lg border ${
-              reset ? "" : index === searchIndex ? "bg-blue-400" : ""
-            } ${index === searchResult && searchResult !== -1 ? "bg-green-400" : ""}`}
-          >
-            {item}
-          </div>
-        ))}
+        {arr.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className={twMerge(
+                "min-w-16 min-h-16 bg-border flex justify-center items-center rounded-lg border",
+                index === searchIndex ? "bg-blue-400" : "",
+                index === searchResult && searchResult !== -1
+                  ? "bg-green-400"
+                  : ""
+              )}
+            >
+              {item}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
