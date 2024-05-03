@@ -18,7 +18,7 @@ const data = [
   {
     title: "Searching",
     link: "searching",
-    status: "progress",
+    status: "done",
     description:
       "Searching algorithms are used to find an item with specified properties among a collection of items.",
   },

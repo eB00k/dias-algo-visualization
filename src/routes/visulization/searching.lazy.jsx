@@ -148,9 +148,9 @@ function SearchAlgoComponent({
               key={index}
               className={twMerge(
                 "min-w-16 min-h-16 bg-border flex justify-center items-center rounded-lg border",
-                index === searchIndex ? "bg-blue-400" : "",
+                index === searchIndex ? "bg-blue-400 animate-ping" : "",
                 index === searchResult && searchResult !== -1
-                  ? "bg-green-400"
+                  ? "bg-green-400 animate-bounce"
                   : ""
               )}
             >
