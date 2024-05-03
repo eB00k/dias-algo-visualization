@@ -78,7 +78,7 @@ function SearchingAlgos() {
   return (
     <div className="page">
       <div className="w-full">
-        <h1 className="p-1 text-slate-500 font-bold">Searching</h1>
+        <h1 className="page-title">Searching</h1>
         <div className="flex gap-2 my-4">
           <Input
             type="number"

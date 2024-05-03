@@ -195,7 +195,7 @@ function InfixToPrefixPostfixConverter() {
   return (
     <div className="page">
       <div>
-        <h1 className="p-2 text-slate-500 font-bold">
+        <h1 className="page-title">
           Infix to Postfix/Prefix & Postfix/Prefix to Infix
         </h1>
         <div className="flex flex-col justify-center py-8 w-full md:max-w-[500px]">

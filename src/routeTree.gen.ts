@@ -31,6 +31,7 @@ const VisulizationPostfixPrefixInfixLazyImport = createFileRoute(
 const VisulizationLinkedListLazyImport = createFileRoute(
   '/visulization/linked-list',
 )()
+const VisulizationGraphLazyImport = createFileRoute('/visulization/graph')()
 
 // Create/Update Routes
 
@@ -96,6 +97,13 @@ const VisulizationLinkedListLazyRoute = VisulizationLinkedListLazyImport.update(
   import('./routes/visulization/linked-list.lazy').then((d) => d.Route),
 )
 
+const VisulizationGraphLazyRoute = VisulizationGraphLazyImport.update({
+  path: '/visulization/graph',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/visulization/graph.lazy').then((d) => d.Route),
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -110,6 +118,10 @@ declare module '@tanstack/react-router' {
     }
     '/challenges': {
       preLoaderRoute: typeof ChallengesLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/visulization/graph': {
+      preLoaderRoute: typeof VisulizationGraphLazyImport
       parentRoute: typeof rootRoute
     }
     '/visulization/linked-list': {
@@ -145,6 +157,7 @@ export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   AboutLazyRoute,
   ChallengesLazyRoute,
+  VisulizationGraphLazyRoute,
   VisulizationLinkedListLazyRoute,
   VisulizationPostfixPrefixInfixLazyRoute,
   VisulizationSearchingLazyRoute,

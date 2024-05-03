@@ -21,6 +21,9 @@
   .page {
     @apply pt-14 min-h-screen;
   }
+  .page-title {
+    @apply p-2 text-slate-500 font-bold;
+  }
 }
 
 @layer base {
