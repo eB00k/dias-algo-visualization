@@ -8,6 +8,7 @@ import {
 } from "@/components/path-finder/algorithims/dijkstra";
 import { Button } from "@/components/ui/button";
 import { bfs } from "@/components/path-finder/algorithims/bfs";
+import { dfs } from "@/components/path-finder/algorithims/dfs";
 
 export const Route = createLazyFileRoute("/visulization/graph")({
   component: PathFindingVisulizer,
@@ -84,6 +85,13 @@ function PathFindingVisulizer() {
     animatePath(visitedNodesInOrder, finishNode);
   };
 
+  const visualizeDFS = () => {
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = dfs(grid, startNode, finishNode);
+    animatePath(visitedNodesInOrder, finishNode);
+  };
+
   const animatePath = (visitedNodesInOrder, finishNode) => {
     // Find the shortest path nodes
     const shortestPathNodes = getNodesInShortestPathOrder(
@@ -139,6 +147,7 @@ function PathFindingVisulizer() {
         <div>
           <Button onClick={visualizeDijkstra}>Visualize</Button>
           <Button onClick={visualizeBFS}>Visualize BFS</Button>
+          <Button onClick={visualizeDFS}>Visualize DFS</Button>
           <Button onClick={() => clearGrid()}>Clear Grid</Button>
         </div>
         <div className="flex flex-col justify-center items-center">
