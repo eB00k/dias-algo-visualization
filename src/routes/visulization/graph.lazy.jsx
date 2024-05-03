@@ -7,6 +7,7 @@ import {
   getNodesInShortestPathOrder,
 } from "@/components/path-finder/algorithims/dijkstra";
 import { Button } from "@/components/ui/button";
+import { bfs } from "@/components/path-finder/algorithims/bfs";
 
 export const Route = createLazyFileRoute("/visulization/graph")({
   component: PathFindingVisulizer,
@@ -76,6 +77,46 @@ function PathFindingVisulizer() {
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   };
 
+  const visualizeBFS = () => {
+    const startNode = grid[START_NODE_ROW][START_NODE_COL];
+    const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
+    const visitedNodesInOrder = bfs(grid, startNode, finishNode);
+    animatePath(visitedNodesInOrder, finishNode);
+  };
+
+  const animatePath = (visitedNodesInOrder, finishNode) => {
+    // Find the shortest path nodes
+    const shortestPathNodes = getNodesInShortestPathOrder(
+      finishNode,
+      visitedNodesInOrder
+    );
+
+    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+      const node = visitedNodesInOrder[i];
+      // Skip if the node is the start or finish node
+      if (node === finishNode || node.isStart) continue;
+      setTimeout(() => {
+        // Animate the visited nodes
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          "node node-visited";
+      }, 50 * i); // Delay the animation to visualize the path step by step
+    }
+
+    for (let i = 0; i < shortestPathNodes.length; i++) {
+      const node = shortestPathNodes[i];
+      // Skip if the node is the start node
+      if (node.isStart) continue;
+      setTimeout(
+        () => {
+          // Animate the shortest path nodes
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            "node node-shortest-path";
+        },
+        50 * visitedNodesInOrder.length + 50 * i
+      ); // Delay the animation after visiting all nodes
+    }
+  };
+
   const clearGrid = () => {
     const newGrid = grid.map((row) =>
       row.map((node) => {
@@ -97,6 +138,7 @@ function PathFindingVisulizer() {
         <h1 className="page-title">Graph Visualization</h1>
         <div>
           <Button onClick={visualizeDijkstra}>Visualize</Button>
+          <Button onClick={visualizeBFS}>Visualize BFS</Button>
           <Button onClick={() => clearGrid()}>Clear Grid</Button>
         </div>
         <div className="flex flex-col justify-center items-center">
