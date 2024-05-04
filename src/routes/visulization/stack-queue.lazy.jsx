@@ -5,7 +5,7 @@ import { stackOptions } from "@/lib/store/config";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { useState, useRef } from "react";
 
-export const Route = createLazyFileRoute("/visulization/stack")({
+export const Route = createLazyFileRoute("/visulization/stack-queue")({
   component: Stack,
 });
 

@@ -1,19 +1,20 @@
 .node {
   width: 20px;
   height: 20px;
-  border: 0.5px solid #999;
+  border-left: 0.2px solid rgba(14, 50, 231, 0.475);
+  border-top: 0.2px solid rgba(14, 50, 231, 0.475);
 }
 
 .node-finish {
-  background-color: red;
+  background-color: crimson;
 }
 
 .node-start {
-  background-color: green;
+  background-color: greenyellow;
 }
 
 .node-wall {
-  background-color: rgb(12, 53, 71);
+  background-color: rgb(21, 68, 88);
 }
 
 .node-visited {
@@ -35,17 +36,20 @@
   }
 
   50% {
-    background-color: rgba(17, 104, 217, 0.75);
+    /* background-color: rgba(17, 104, 217, 0.75); */
+    background-color: rgb(26, 69, 165, 0.75);
   }
 
   75% {
     transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75);
+    /* background-color: rgba(0, 217, 159, 0.75); */
+    background-color: rgb(37, 99, 235, 0.75);
   }
 
   100% {
     transform: scale(1);
-    background-color: rgba(0, 190, 218, 0.75);
+    /* background-color: rgba(0, 190, 218, 0.75); */
+    background-color: rgb(102, 146, 241, 0.75);
   }
 }
 
@@ -63,16 +67,16 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-color: rgb(255, 254, 106);
+    background-color: rgba(0, 190, 218, 0.9);
   }
 
   50% {
     transform: scale(1.2);
-    background-color: rgb(255, 254, 106);
+    background-color: rgba(0, 190, 218, 0.9);
   }
 
   100% {
     transform: scale(1);
-    background-color: rgb(255, 254, 106);
+    background-color: rgba(0, 190, 218, 0.9);
   }
 }

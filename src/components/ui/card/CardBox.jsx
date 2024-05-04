@@ -28,8 +28,8 @@ function CardBox({ title, description, status }) {
     };
   } else if (status === "progress") {
     statusColor = {
-      bg: "bg-orange-400 dark:bg-orange-600",
-      border: "border-orange-400 dark:border-orange-600",
+      bg: "bg-yellow-400 dark:bg-yellow-600",
+      border: "border-yellow-400 dark:border-yellow-600",
     };
   }
 

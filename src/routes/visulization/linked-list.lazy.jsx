@@ -182,7 +182,7 @@ function LinkedList() {
     <div className="page">
       <h1 className="p-1 text-slate-500 font-bold">Linked List</h1>
       <div className="flex justify-evenly flex-col md:flex-row">
-        <div className="p-2 flex gap-4 justify-center  flex-col ">
+        <div className="p-2 flex gap-4 justify-center flex-col ">
           <Input ref={inputRef} type={"text"} className="md:max-w-[300px]" />
           <Button onClick={handleAdd}>+Add</Button>
           <Button

@@ -20,7 +20,9 @@ const ChallengesLazyImport = createFileRoute('/challenges')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 const VisulizationIndexLazyImport = createFileRoute('/visulization/')()
-const VisulizationStackLazyImport = createFileRoute('/visulization/stack')()
+const VisulizationStackQueueLazyImport = createFileRoute(
+  '/visulization/stack-queue',
+)()
 const VisulizationSortingLazyImport = createFileRoute('/visulization/sorting')()
 const VisulizationSearchingLazyImport = createFileRoute(
   '/visulization/searching',
@@ -57,11 +59,13 @@ const VisulizationIndexLazyRoute = VisulizationIndexLazyImport.update({
   import('./routes/visulization/index.lazy').then((d) => d.Route),
 )
 
-const VisulizationStackLazyRoute = VisulizationStackLazyImport.update({
-  path: '/visulization/stack',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/visulization/stack.lazy').then((d) => d.Route),
+const VisulizationStackQueueLazyRoute = VisulizationStackQueueLazyImport.update(
+  {
+    path: '/visulization/stack-queue',
+    getParentRoute: () => rootRoute,
+  } as any,
+).lazy(() =>
+  import('./routes/visulization/stack-queue.lazy').then((d) => d.Route),
 )
 
 const VisulizationSortingLazyRoute = VisulizationSortingLazyImport.update({
@@ -140,8 +144,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisulizationSortingLazyImport
       parentRoute: typeof rootRoute
     }
-    '/visulization/stack': {
-      preLoaderRoute: typeof VisulizationStackLazyImport
+    '/visulization/stack-queue': {
+      preLoaderRoute: typeof VisulizationStackQueueLazyImport
       parentRoute: typeof rootRoute
     }
     '/visulization/': {
@@ -162,7 +166,7 @@ export const routeTree = rootRoute.addChildren([
   VisulizationPostfixPrefixInfixLazyRoute,
   VisulizationSearchingLazyRoute,
   VisulizationSortingLazyRoute,
-  VisulizationStackLazyRoute,
+  VisulizationStackQueueLazyRoute,
   VisulizationIndexLazyRoute,
 ])
 

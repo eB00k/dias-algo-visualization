@@ -25,3 +25,9 @@ export const expressionConverterOptions = [
   { title: "Postfix to Infix", name: "postfix-to-infix" },
   { title: "Prefix to Infix", name: "prefix-to-infix" },
 ];
+
+export const pathFindingAlgorithmsOptions = [
+  { title: "Dijkstra", name: "dijkstra" },
+  { title: "BFS", name: "bfs" },
+  { title: "DFS", name: "dfs" },
+];

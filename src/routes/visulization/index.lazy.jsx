@@ -30,11 +30,11 @@ const data = [
       "A linked list is a linear data structure consisting of a sequence of elements where each element points to the next element in the sequence.",
   },
   {
-    title: "Stack",
-    link: "stack",
+    title: "Stack & Queue",
+    link: "stack-queue",
     status: "done",
     description:
-      "A stack is a linear data structure that follows the Last In, First Out (LIFO) principle, where elements are inserted and removed from the same end called the top.",
+      "Stack and Queue are linear data structures. Stack follows the Last In, First Out (LIFO) principle, and Queue follows the First In, First Out (FIFO) principle.",
   },
   {
     title: "Postfix, Prefix, and Infix Notations",
@@ -63,6 +63,13 @@ const data = [
     status: "undone",
     description:
       "Dynamic Programming is a method for solving complex problems by breaking them down into simpler subproblems.",
+  },
+  {
+    title: "Path Finding Algorithms",
+    link: "path-finding-algorithms",
+    status: "undone",
+    description:
+      "Path Finding Algorithms are used to find a path between two points in a graph or grid.",
   },
 ];
 
