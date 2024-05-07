@@ -31,3 +31,9 @@ export const pathFindingAlgorithmsOptions = [
   { title: "BFS", name: "bfs" },
   { title: "DFS", name: "dfs" },
 ];
+
+export const hashCollisionStrategyOptions = [
+  { title: "Linear probing", name: "linear" },
+  { title: "Double probing", name: "double" },
+  { title: "Quadratic probing", name: "quadratic" },
+];

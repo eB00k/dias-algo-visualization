@@ -37,6 +37,13 @@ const data = [
       "Stack and Queue are linear data structures. Stack follows the Last In, First Out (LIFO) principle, and Queue follows the First In, First Out (FIFO) principle.",
   },
   {
+    title: "Hash Functions",
+    link: "hash",
+    status: "undone",
+    description:
+      "Hash functions produce fixed-size output from an input, commonly used in computer science for tasks like data retrieval and cryptography.",
+  },
+  {
     title: "Postfix, Prefix, and Infix Notations",
     link: "postfix-prefix-infix",
     status: "done",
