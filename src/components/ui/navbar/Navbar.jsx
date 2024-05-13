@@ -36,16 +36,17 @@ export default function Navbar() {
                 key={link.to}
                 className="font-medium flex items-center text-sm transition-colors hover:underline"
                 to={link.to}
+                activeProps={{ className: "text-bluish" }}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-4">
-            <Button size="sm" variant="outline">
+          <div className="flex items-center gap-6">
+            {/* <Button size="sm" variant="outline">
               Sign in
             </Button>
-            <Button size="sm">Sign up</Button>
+            <Button size="sm">Sign up</Button> */}
             <ModeToggle />
           </div>
         </div>

@@ -83,14 +83,12 @@ function HashTableVisualizer({ hashTable, setHashTable, collisionStrategy }) {
         {hashTable.table.map((bucket, index) => (
           <div
             key={index}
-            className="border rounded-md p-2 mr-2 w-20 h-10 bg-border"
+            className="border rounded-md p-2 mr-2 w-24 h-10 bg-border"
           >
-            <div>
+            <div className="flex">
+              <div className="font-bold mr-2">{index} :</div>
               {bucket.map(({ key, value }) => (
-                <div key={key} className="flex">
-                  <div className="font-bold mr-2">{index} :</div>
-                  <div>{value}</div>
-                </div>
+                <div key={key}>{value}</div>
               ))}
             </div>
           </div>

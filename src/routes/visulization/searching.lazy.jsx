@@ -16,8 +16,6 @@ function SearchingAlgos() {
   const [binarySearchIndex, setBinarySearchIndex] = useState(-1);
   const [searchResultLinear, setSearchResultLinear] = useState(-1);
   const [searchResultBinary, setSearchResultBinary] = useState(-1);
-  // const [resetLinear, setResetLinear] = useState(true);
-  // const [resetBinary, setResetBinary] = useState(true);
   const [searchTarget, setSearchTarget] = useState("");
 
   useEffect(() => {
@@ -34,7 +32,6 @@ function SearchingAlgos() {
   }, []);
 
   const linearSearch = async (target) => {
-    // setResetLinear(false);
     for (let i = 0; i < initialArray.length; i++) {
       setLinearSearchIndex(i);
       await delay(500);
@@ -43,11 +40,9 @@ function SearchingAlgos() {
         break;
       }
     }
-    // setResetLinear(true);
   };
 
   const binarySearch = async (target) => {
-    // setResetBinary(false);
     let left = 0;
     let right = sortedArray.length - 1;
     while (left <= right) {
@@ -63,7 +58,6 @@ function SearchingAlgos() {
         right = mid - 1;
       }
     }
-    // setResetBinary(true);
   };
 
   const handleSearchBoth = () => {
@@ -92,7 +86,7 @@ function SearchingAlgos() {
           </Button>
         </div>
         <div>
-          <div className="flex flex-wrap gap-4 justify-between">
+          <div className="flex flex-col md:flex-row flex-wrap gap-4 justify-between">
             <SearchAlgoComponent
               arr={initialArray}
               label="Linear Search"
@@ -133,7 +127,7 @@ function SearchAlgoComponent({
   };
 
   return (
-    <div className="flex-1 min-w-max max-w-max">
+    <div className="flex-1 ">
       <Button
         variant={"destructive"}
         onClick={() => handleSearch(searchTarget)}
@@ -141,13 +135,14 @@ function SearchAlgoComponent({
       >
         {label}
       </Button>
-      <div className="grid grid-cols-5 sm:grid-cols-7 gap-2 place-items-center ">
+      {/* grid grid-cols-5 sm:grid-cols-7 gap-2 place-items-center  */}
+      <div className="flex flex-wrap gap-2">
         {arr.map((item, index) => {
           return (
             <div
               key={index}
               className={twMerge(
-                "min-w-16 min-h-16 bg-border flex justify-center items-center rounded-lg border",
+                "w-16 h-16 bg-border flex justify-center items-center rounded-lg border",
                 index === searchIndex ? "bg-blue-400 animate-ping" : "",
                 index === searchResult && searchResult !== -1
                   ? "bg-green-400 animate-bounce"

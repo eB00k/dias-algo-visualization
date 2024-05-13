@@ -39,7 +39,7 @@ const data = [
   {
     title: "Hash Functions",
     link: "hash",
-    status: "undone",
+    status: "progress",
     description:
       "Hash functions produce fixed-size output from an input, commonly used in computer science for tasks like data retrieval and cryptography.",
   },
